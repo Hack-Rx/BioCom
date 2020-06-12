@@ -34,6 +34,7 @@ class _GoalsPageWithLoaderState extends State<GoalsPageWithLoader> {
         PageTransition(type: PageTransitionType.fade, child: Dashboard()));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
