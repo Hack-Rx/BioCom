@@ -8,8 +8,13 @@ import 'package:hackathoncalorie/fit_at_home/fit_at_home.dart';
 import 'package:hackathoncalorie/meal_planner/meal_planner.dart';
 import 'package:hackathoncalorie/my_profile/my_profile.dart';
 import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
+import 'package:hackathoncalorie/workouts/grid_workouts_tile.dart';
+import 'package:hackathoncalorie/workouts/shoulder_workouts.dart';
+import 'package:hackathoncalorie/workouts/upper_body_workouts.dart';
+import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'lower_body_workouts.dart';
 
 class Workouts extends StatefulWidget {
   static String id = 'workouts';
@@ -483,9 +488,80 @@ class _WorkoutsState extends State<Workouts> {
                     });
                   }),
             ))),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+        body: ListView(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
+                  child: Container(
+                    height: 2.5,
+                    width: 250.0,
+                    decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                  ),
+                ),
+                SizedBox(
+                  height: 35.0,
+                ),
+                GridWorkoutsTile(
+                  title: 'Upper-Body',
+                  image: 'assets/images/pushups.jpg',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: UpperBodyWorkouts(),
+                        ));
+                  },
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                GridWorkoutsTile(
+                  title: 'Lower-Body',
+                  image: 'assets/images/squats.jpg',
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: LowerBodyWorkouts(),
+                        ));
+                  },
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                GridWorkoutsTile(
+                    title: 'Shoulder',
+                    image: 'assets/images/pullups.jpg',
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: ShoulderWorkouts(),
+                          ));
+                    }),
+                SizedBox(
+                  height: 15.0,
+                ),
+                GridWorkoutsTile(
+                  title: 'Back Workouts',
+                  image: 'assets/images/back-workout.jpg',
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

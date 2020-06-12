@@ -139,7 +139,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         width: 18.0,
                       ),
                       Text(
-                        'Welcome back, Hardik',
+                        'Welcome back, Name',
                         style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
                     ],

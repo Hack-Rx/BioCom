@@ -1,7 +1,9 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackathoncalorie/calorie_tracker/calender_timeline.dart';
 import 'package:hackathoncalorie/calorie_tracker/calorie_tracker.dart';
+import 'package:hackathoncalorie/calorie_tracker/status_timeline.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
 import 'package:hackathoncalorie/dashboard/line_chart.dart';
 import 'package:flutter/rendering.dart';
@@ -12,6 +14,9 @@ import 'package:hackathoncalorie/dashboard/radial_progress_steps.dart';
 import 'package:hackathoncalorie/dashboard/radial_progress_burnt.dart';
 import 'package:hackathoncalorie/dashboard/water_level_indicator.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:hackathoncalorie/fit_at_home/radial_progress_calories_fit_at_home.dart';
+import 'package:hackathoncalorie/fit_at_home/radial_progress_miles_fit_at_home.dart';
+import 'package:hackathoncalorie/fit_at_home/radial_progress_steps_fit_at_home.dart';
 import 'package:hackathoncalorie/meal_planner/meal_planner.dart';
 import 'package:hackathoncalorie/my_profile/my_profile.dart';
 import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
@@ -496,9 +501,124 @@ class _FitAtHomeState extends State<FitAtHome> {
                       });
                     }),
               ))),
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+          body: ListView(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
+                    child: Container(
+                      height: 2.5,
+                      width: 250.0,
+                      decoration: BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RadialProgressStepsFitAtHome(
+                        totalSteps: 6000,
+                        achievedSteps: 4000,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      RadialProgressCaloriesFitAtHome(
+                        burntCalories: 1500,
+                        totalCalories: 3000,
+                      ),
+                      RadialProgressMilesFitAtHome(
+                        walkedMiles: 3,
+                        targetMiles: 6,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15.0, right: 15.0, top: 15.0, bottom: 60.0),
+                    child: Card(
+                      elevation: 0.0,
+                      child: Container(
+                        height: 350.0,
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                SizedBox(width: 15.0),
+                                Text(
+                                  'Sleep Hours',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 23.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'You have slept for :',
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 21.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.sleepHours.toString() +
+                                        ' hours ' +
+                                        widget.sleepMinutes.toString() +
+                                        ' mins.',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.blue),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              'Motivational text',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         ),
       ),
