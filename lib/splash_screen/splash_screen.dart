@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:hackathoncalorie/splash_screen/data.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = 'splash_screen';
@@ -56,6 +57,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 title: mySLides[0].getTitle(),
                 desc: mySLides[0].getDesc(),
               ),
+              SlideTile(
+                imagePath: mySLides[1].getImageAssetPath(),
+                title: mySLides[1].getTitle(),
+                desc: mySLides[1].getDesc(),
+              ),
             ],
           ),
         ),
@@ -109,6 +115,12 @@ class _SplashScreenState extends State<SplashScreen> {
               )
             : InkWell(
                 onTap: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.downToUp,
+                        child: SplashScreen(),
+                      ));
                 },
                 child: Container(
                   height: Platform.isIOS ? 70 : 60,

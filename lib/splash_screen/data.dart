@@ -44,5 +44,14 @@ List<SliderModel> getSlides() {
 
   sliderModel = new SliderModel();
 
+  //2
+  sliderModel.setDesc(
+      "Creating a healthy daily routine keeps you grounded and can have a big impact on your physical and mental health.");
+  sliderModel.setTitle("Motivation");
+  sliderModel.setImageAssetPath("assets/images/women-running.jpeg");
+  slides.add(sliderModel);
+
+  sliderModel = new SliderModel();
+
   return slides;
 }
