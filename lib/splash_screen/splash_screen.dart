@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:hackathoncalorie/login_screen/login_screen.dart';
 import 'package:hackathoncalorie/splash_screen/data.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -82,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlatButton(
-                      onPressed: () {
+                      onPressed : () {
                         controller.animateToPage(3,
                             duration: Duration(milliseconds: 400),
                             curve: Curves.linear);
@@ -129,7 +130,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       context,
                       PageTransition(
                         type: PageTransitionType.downToUp,
-                        child: SplashScreen(),
+                        child: LoginScreen(),
                       ));
                 },
                 child: Container(
