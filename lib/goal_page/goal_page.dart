@@ -92,7 +92,6 @@ class _GoalPageState extends State<GoalPage> {
                 color: Color(0xFF3d84a8).withOpacity(0.8),
                 elevation: 10.0,
                 child: Container(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   decoration: BoxDecoration(
                     color: Color(0xFF3d84a8).withOpacity(0.8),
                     borderRadius: BorderRadius.circular(10.0),
@@ -103,23 +102,25 @@ class _GoalPageState extends State<GoalPage> {
                     padding: EdgeInsets.all(0.0),
                     onPressed: () => showIntGoalWeightDialog(),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        SizedBox(
+                          width: 20.0,
+                        ),
                         Text("Desired Weight",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 17.5)),
-//                        SizedBox(
-//                          width: 120.0,
-//                        ),
+                        SizedBox(
+                          width: 120.0,
+                        ),
                         Text(' $currentIntGoalWeightValue Kgs',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 17.5)),
-//                        SizedBox(width: 4.0),
-//                        Icon(
-//                          Icons.arrow_downward,
-//                          color: Colors.white70,
-//                          size: 16.0,
-//                        ),
+                        SizedBox(width: 4.0),
+                        Icon(
+                          Icons.arrow_downward,
+                          color: Colors.white70,
+                          size: 16.0,
+                        ),
                       ],
                     ),
                   ),
@@ -133,16 +134,17 @@ class _GoalPageState extends State<GoalPage> {
                 splashColor: Color(0xFF27ab30),
                 padding: EdgeInsets.all(0.0),
                 child: Container(
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
                     height: 75.0,
-                    width: 300.0,
+                    width: 280.0,
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         color: Color(0xFF3d84a8).withOpacity(0.7),
                         borderRadius: BorderRadius.circular(15.0)),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        SizedBox(
+                          width: 15.0,
+                        ),
                         Text('Achieve in 4 Weeks',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -150,6 +152,7 @@ class _GoalPageState extends State<GoalPage> {
                                 fontFamily: 'Quicksand',
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white)),
+                        SizedBox(width: 50.0),
                         Icon(
                           Icons.arrow_forward,
                           color: Colors.white70,
@@ -173,16 +176,17 @@ class _GoalPageState extends State<GoalPage> {
                 splashColor: Color(0xFF27ab30),
                 padding: EdgeInsets.all(0.0),
                 child: Container(
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
                     height: 75.0,
-                    width: 300.0,
+                    width: 280.0,
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         color: Color(0xFF3d84a8).withOpacity(0.7),
                         borderRadius: BorderRadius.circular(15.0)),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        SizedBox(
+                          width: 15.0,
+                        ),
                         Text('Achieve in 8 Weeks',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -190,6 +194,7 @@ class _GoalPageState extends State<GoalPage> {
                                 fontFamily: 'Quicksand',
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white)),
+                        SizedBox(width: 50.0),
                         Icon(
                           Icons.arrow_forward,
                           color: Colors.white70,
@@ -213,16 +218,17 @@ class _GoalPageState extends State<GoalPage> {
                 splashColor: Color(0xFF27ab30),
                 padding: EdgeInsets.all(0.0),
                 child: Container(
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
                     height: 75.0,
-                    width: 300.0,
+                    width: 280.0,
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         color: Color(0xFF3d84a8).withOpacity(0.7),
                         borderRadius: BorderRadius.circular(15.0)),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        SizedBox(
+                          width: 15.0,
+                        ),
                         Text('Achieve in 12 Weeks',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -230,6 +236,7 @@ class _GoalPageState extends State<GoalPage> {
                                 fontFamily: 'Quicksand',
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white)),
+                        SizedBox(width: 35.0),
                         Icon(
                           Icons.arrow_forward,
                           color: Colors.white70,

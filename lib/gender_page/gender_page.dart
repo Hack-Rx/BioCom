@@ -5,11 +5,6 @@ import 'package:hackathoncalorie/height_and_weight/age_picker.dart';
 import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:hackathoncalorie/purpose/purpose.dart';
-import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
-
-import '../height_and_weight/height_and_weight.dart';
-import '../height_and_weight/height_and_weight.dart';
-
 
 class GenderPage extends StatefulWidget {
   static String id = 'gender_page';
@@ -19,8 +14,6 @@ class GenderPage extends StatefulWidget {
 }
 
 class _GenderPageState extends State<GenderPage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -98,14 +91,12 @@ class _GenderPageState extends State<GenderPage> {
                           color: Colors.white,
                         ),
                         onPressed: () {
-                          HeightAndWeight(gender: 'Male');
                           Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.fade,
                                 child: HeightAndWeight(),
                               ));
-
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -132,7 +123,6 @@ class _GenderPageState extends State<GenderPage> {
                           color: Colors.white,
                         ),
                         onPressed: () {
-                          HeightAndWeight(gender: 'Female');
                           Navigator.push(
                               context,
                               PageTransition(

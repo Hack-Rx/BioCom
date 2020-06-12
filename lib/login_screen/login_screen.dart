@@ -1,9 +1,11 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathoncalorie/gender_page/gender_page.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:platform_alert_dialog/platform_alert_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -29,7 +31,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class HomepageState extends State<LoginPage> {
-  bool islogin = true;
+  bool showSpinner = false;
+
+
+  bool isLogin = false;
+
+
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +77,13 @@ class HomepageState extends State<LoginPage> {
                   ])), //Color(0xFFDFF8FE)),
           child: Stack(
             children: [
+//                Text(
+//                  errorMessage,
+//                  style: TextStyle(
+//                    color: Colors.red,
+//                    fontWeight: FontWeight.bold,
+//                  ),
+//                ),
               Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
@@ -91,7 +121,7 @@ class HomepageState extends State<LoginPage> {
                       child: Stack(
                         children: [
                           // LOGIN
-                          islogin
+                          isLogin
                               ? Positioned(
                               top: 15,
                               left: 20,
@@ -130,12 +160,14 @@ class HomepageState extends State<LoginPage> {
                                                     right: 30),
                                                 child: Text(
                                                   "Sign Up",
-                                                  style: GoogleFonts.roboto(
+                                                  style:
+                                                  GoogleFonts.roboto(
                                                       fontWeight:
-                                                      FontWeight.w600,
+                                                      FontWeight
+                                                          .w600,
                                                       fontSize: 27,
-                                                      color:
-                                                      Colors.grey[400]),
+                                                      color: Colors
+                                                          .grey[400]),
                                                 ),
                                               ),
                                             ],
@@ -169,11 +201,14 @@ class HomepageState extends State<LoginPage> {
                                                     left: 30, top: 20),
                                                 child: Text(
                                                   "Login",
-                                                  style: GoogleFonts.roboto(
+                                                  style:
+                                                  GoogleFonts.roboto(
                                                       fontWeight:
-                                                      FontWeight.w600,
+                                                      FontWeight
+                                                          .w600,
                                                       fontSize: 32,
-                                                      color: Colors.white),
+                                                      color: Colors
+                                                          .white),
                                                 ),
                                               ),
                                               SizedBox(
@@ -187,13 +222,14 @@ class HomepageState extends State<LoginPage> {
                                                   height: 12,
                                                   child: Card(
                                                       elevation: 2,
-                                                      color: Colors.white)),
+                                                      color:
+                                                      Colors.white)),
                                               SizedBox(
                                                 height: 30,
                                               ),
                                               Container(
-                                                  width:
-                                                  MediaQuery.of(context)
+                                                  width: MediaQuery.of(
+                                                      context)
                                                       .size
                                                       .width *
                                                       0.7,
@@ -202,6 +238,8 @@ class HomepageState extends State<LoginPage> {
                                                   ),
                                                   height: 60,
                                                   child: TextField(
+                                                    onChanged: (value) {
+                                                    },
                                                     keyboardType:
                                                     TextInputType
                                                         .emailAddress,
@@ -225,8 +263,8 @@ class HomepageState extends State<LoginPage> {
                                                 height: 20,
                                               ),
                                               Container(
-                                                  width:
-                                                  MediaQuery.of(context)
+                                                  width: MediaQuery.of(
+                                                      context)
                                                       .size
                                                       .width *
                                                       0.7,
@@ -235,6 +273,8 @@ class HomepageState extends State<LoginPage> {
                                                   ),
                                                   height: 60,
                                                   child: TextField(
+                                                    onChanged: (value) {
+                                                    },
                                                     obscureText: true,
                                                     decoration:
                                                     InputDecoration(
@@ -264,16 +304,19 @@ class HomepageState extends State<LoginPage> {
                                                       .start,
                                                   children: [
                                                     Spacer(),
-                                                    Text(
-                                                      "Forgot Password ?",
-                                                      style: GoogleFonts
-                                                          .roboto(
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w600,
-                                                          fontSize: 12,
-                                                          color: Colors
-                                                              .white),
+                                                    GestureDetector(
+                                                      onTap: (){
+                                                      },
+                                                      child: Text(
+                                                        "Forgot Password ?",
+                                                        style: GoogleFonts.roboto(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize: 12,
+                                                            color: Colors
+                                                                .white),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -308,27 +351,31 @@ class HomepageState extends State<LoginPage> {
                                                           25)),
                                                   boxShadow: [
                                                     BoxShadow(
-                                                        color: Colors.white,
+                                                        color:
+                                                        Colors.white,
                                                         spreadRadius: 1,
                                                         blurRadius: 0)
                                                   ]),
                                               child: MaterialButton(
-                                                onPressed: () {
+                                                onPressed: (){
                                                   Navigator.push(
                                                       context,
                                                       PageTransition(
                                                         type:
                                                         PageTransitionType
                                                             .fade,
-                                                        child: GenderPage(),
+                                                        child:
+                                                        GenderPage(),
                                                       ));
                                                 },
                                                 elevation: 2,
                                                 child: Text(
                                                   "Login",
-                                                  style: GoogleFonts.roboto(
+                                                  style:
+                                                  GoogleFonts.roboto(
                                                       fontWeight:
-                                                      FontWeight.w600,
+                                                      FontWeight
+                                                          .w600,
                                                       fontSize: 13.5,
                                                       color: Color(
                                                           0xFF4BB8F4)),
@@ -344,7 +391,7 @@ class HomepageState extends State<LoginPage> {
                               ))
                               : Container(),
                           // SIGN-UP
-                          islogin == false
+                          isLogin == false
                               ? Positioned(
                               top: 20,
                               left: 20,
@@ -371,11 +418,17 @@ class HomepageState extends State<LoginPage> {
                                                     .width *
                                                     0.92,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.grey[400]
-                                                        .withOpacity(0.2)),
+                                                    color: Colors
+                                                        .grey[400]
+                                                        .withOpacity(
+                                                        0.2)),
                                                 child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .start,
                                                   children: [
                                                     SizedBox(
                                                       height: 20,
@@ -394,7 +447,8 @@ class HomepageState extends State<LoginPage> {
                                                                 .w600,
                                                             fontSize: 27,
                                                             color: Colors
-                                                                .grey[400]),
+                                                                .grey[
+                                                            400]),
                                                       ),
                                                     ),
                                                   ],
@@ -406,15 +460,18 @@ class HomepageState extends State<LoginPage> {
                                             clipper: SignupClipper(),
                                             child: Container(
                                               height: 500,
-                                              width: MediaQuery.of(context)
+                                              width:
+                                              MediaQuery.of(context)
                                                   .size
                                                   .width *
                                                   0.92,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF30e3ca)),
+                                                  color:
+                                                  Color(0xFF30e3ca)),
                                               child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment
+                                                    .start,
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment
                                                     .start,
@@ -429,18 +486,20 @@ class HomepageState extends State<LoginPage> {
                                                     children: [
                                                       Spacer(),
                                                       Container(
-                                                        margin:
-                                                        EdgeInsets.only(
+                                                        margin: EdgeInsets
+                                                            .only(
                                                             left: 30,
                                                             top: 20,
-                                                            right: 20),
+                                                            right:
+                                                            20),
                                                         child: Text(
                                                           "Sign Up",
                                                           style: GoogleFonts.roboto(
                                                               fontWeight:
                                                               FontWeight
                                                                   .w600,
-                                                              fontSize: 32,
+                                                              fontSize:
+                                                              32,
                                                               color: Colors
                                                                   .white),
                                                         ),
@@ -460,12 +519,14 @@ class HomepageState extends State<LoginPage> {
                                                           width: 85,
                                                           margin: EdgeInsets
                                                               .only(
-                                                              left: 30,
+                                                              left:
+                                                              30,
                                                               right:
                                                               25),
                                                           height: 12,
                                                           child: Card(
-                                                              elevation: 2,
+                                                              elevation:
+                                                              2,
                                                               color: Colors
                                                                   .white)),
                                                     ],
@@ -485,12 +546,17 @@ class HomepageState extends State<LoginPage> {
                                                       ),
                                                       height: 60,
                                                       child: TextField(
+                                                        onChanged:
+                                                            (value) {
+                                                        },
                                                         decoration:
                                                         InputDecoration(
-                                                            icon: Icon(
+                                                            icon:
+                                                            Icon(
                                                               Icons
                                                                   .perm_identity,
-                                                              size: 24,
+                                                              size:
+                                                              24,
                                                               color: Colors
                                                                   .white,
                                                             ),
@@ -499,8 +565,8 @@ class HomepageState extends State<LoginPage> {
                                                             labelStyle: GoogleFonts.lato(
                                                                 fontSize:
                                                                 16,
-                                                                color: Colors
-                                                                    .white)),
+                                                                color:
+                                                                Colors.white)),
                                                       )),
                                                   SizedBox(
                                                     height: 10,
@@ -517,15 +583,20 @@ class HomepageState extends State<LoginPage> {
                                                       ),
                                                       height: 60,
                                                       child: TextField(
+                                                        onChanged:
+                                                            (value) {
+                                                        },
                                                         keyboardType:
                                                         TextInputType
                                                             .emailAddress,
                                                         decoration:
                                                         InputDecoration(
-                                                            icon: Icon(
+                                                            icon:
+                                                            Icon(
                                                               Icons
                                                                   .mail,
-                                                              size: 20,
+                                                              size:
+                                                              20,
                                                               color: Colors
                                                                   .white,
                                                             ),
@@ -534,8 +605,8 @@ class HomepageState extends State<LoginPage> {
                                                             labelStyle: GoogleFonts.lato(
                                                                 fontSize:
                                                                 16,
-                                                                color: Colors
-                                                                    .white)),
+                                                                color:
+                                                                Colors.white)),
                                                       )),
                                                   SizedBox(
                                                     height: 10,
@@ -552,13 +623,18 @@ class HomepageState extends State<LoginPage> {
                                                       ),
                                                       height: 60,
                                                       child: TextField(
+                                                        onChanged:
+                                                            (value) {
+                                                        },
                                                         obscureText: true,
                                                         decoration:
                                                         InputDecoration(
-                                                            icon: Icon(
+                                                            icon:
+                                                            Icon(
                                                               Icons
                                                                   .build,
-                                                              size: 20,
+                                                              size:
+                                                              20,
                                                               color: Colors
                                                                   .white,
                                                             ),
@@ -567,8 +643,8 @@ class HomepageState extends State<LoginPage> {
                                                             labelStyle: GoogleFonts.lato(
                                                                 fontSize:
                                                                 16,
-                                                                color: Colors
-                                                                    .white)),
+                                                                color:
+                                                                Colors.white)),
                                                       )),
                                                 ],
                                               ),
@@ -611,13 +687,15 @@ class HomepageState extends State<LoginPage> {
                                                         blurRadius: 1)
                                                   ]),
                                               child: MaterialButton(
-                                                onPressed: () {},
+                                                onPressed: (){},
                                                 elevation: 2,
                                                 child: Text(
                                                   "Sign Up",
-                                                  style: GoogleFonts.roboto(
+                                                  style:
+                                                  GoogleFonts.roboto(
                                                       fontWeight:
-                                                      FontWeight.w600,
+                                                      FontWeight
+                                                          .w600,
                                                       fontSize: 13.5,
                                                       color: Color(
                                                           0xFF4BB8F4)),
@@ -665,24 +743,24 @@ class HomepageState extends State<LoginPage> {
                   size: 24,
                 ),
               ),
-              islogin
+              isLogin
                   ? Positioned(
                 bottom: MediaQuery.of(context).size.height * 0.11,
                 left: loginLeftValue,
                 child: GestureDetector(
                   onTap: () {
-                    if (islogin) {
+                    if (isLogin) {
                       setState(() {
-                        islogin = false;
+                        isLogin = false;
                       });
                     } else {
                       setState(() {
-                        islogin = true;
+                        isLogin = true;
                       });
                     }
                   },
                   child: Text(
-                    islogin
+                    isLogin
                         ? " New User? Sign Up"
                         : "Registered User? Login",
                     style: GoogleFonts.roboto(
@@ -697,18 +775,18 @@ class HomepageState extends State<LoginPage> {
                 left: registeredLeftValue,
                 child: GestureDetector(
                   onTap: () {
-                    if (islogin) {
+                    if (isLogin) {
                       setState(() {
-                        islogin = false;
+                        isLogin = false;
                       });
                     } else {
                       setState(() {
-                        islogin = true;
+                        isLogin = true;
                       });
                     }
                   },
                   child: Text(
-                    islogin
+                    isLogin
                         ? " New User? Sign Up"
                         : "Registered User? Login",
                     style: GoogleFonts.roboto(
@@ -832,7 +910,6 @@ class signupShadowPaint extends CustomPainter {
     clip.quadraticBezierTo(size.width, 0, size.width, 70);
 
     clip.close();
-
     canvas.drawShadow(clip, Color(0xFF4BB8F4), 5, false);
   }
 

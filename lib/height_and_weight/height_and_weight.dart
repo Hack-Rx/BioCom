@@ -1,15 +1,22 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathoncalorie/dashboard/dashboard.dart';
+import 'package:hackathoncalorie/height_and_weight/age_picker.dart';
+import 'package:hackathoncalorie/height_and_weight/height_picker.dart';
+import 'package:hackathoncalorie/height_and_weight/reusable_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackathoncalorie/height_and_weight/weight_picker.dart';
+import 'package:hackathoncalorie/my_profile/my_profile.dart';
+import 'package:hackathoncalorie/tools/constants.dart';
 import 'package:hackathoncalorie/tools/calculator_brain.dart';
 import 'package:hackathoncalorie/height_and_weight/results_page.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:page_transition/page_transition.dart';
+import 'dart:io';
 
 class HeightAndWeight extends StatefulWidget {
   static String id = 'height_and_weight';
-  // Todo Access gender property by using widget.gender
-  String gender;
-  HeightAndWeight({this.gender});
 
   @override
   _HeightAndWeightState createState() => _HeightAndWeightState();
@@ -108,7 +115,6 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                   color: Color(0xFF3d84a8).withOpacity(0.8),
                   elevation: 8.0,
                   child: Container(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0),
                     decoration: BoxDecoration(
                       color: Color(0xFF3d84a8).withOpacity(0.8),
                       borderRadius: BorderRadius.circular(10.0),
@@ -119,20 +125,25 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                       padding: EdgeInsets.all(0.0),
                       onPressed: () => showIntAgeDialog(),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text("Age",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
+                          SizedBox(
+                            width: 200.0,
+                          ),
                           Text(' $currentIntAgeValue',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
-//                          SizedBox(width: 4.0),
-//                          Icon(
-//                            Icons.arrow_downward,
-//                            color: Colors.white70,
-//                            size: 16.0,
-//                          ),
+                          SizedBox(width: 4.0),
+                          Icon(
+                            Icons.arrow_downward,
+                            color: Colors.white70,
+                            size: 16.0,
+                          ),
                         ],
                       ),
                     ),
@@ -148,7 +159,6 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                   color: Color(0xFF3d84a8).withOpacity(0.8),
                   elevation: 8.0,
                   child: Container(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0),
                     decoration: BoxDecoration(
                       color: Color(0xFF3d84a8).withOpacity(0.8),
                       borderRadius: BorderRadius.circular(10.0),
@@ -159,26 +169,25 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                       padding: EdgeInsets.all(0.0),
                       onPressed: () => showDoubleHeightDialog(),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-//                          SizedBox(
-//                            width: 20.0,
-//                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text("Height",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
-//                          SizedBox(
-//                            width: 143.0,
-//                          ),
+                          SizedBox(
+                            width: 143.0,
+                          ),
                           Text('$currentDoubleHeightValue feet',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
-//                          SizedBox(width: 4.0),
-//                          Icon(
-//                            Icons.arrow_downward,
-//                            color: Colors.white70,
-//                            size: 16.0,
-//                          ),
+                          SizedBox(width: 4.0),
+                          Icon(
+                            Icons.arrow_downward,
+                            color: Colors.white70,
+                            size: 16.0,
+                          ),
                         ],
                       ),
                     ),
@@ -194,7 +203,6 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                   color: Color(0xFF3d84a8).withOpacity(0.8),
                   elevation: 8.0,
                   child: Container(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0),
                     decoration: BoxDecoration(
                       color: Color(0xFF3d84a8).withOpacity(0.8),
                       borderRadius: BorderRadius.circular(10.0),
@@ -205,26 +213,25 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                       padding: EdgeInsets.all(0.0),
                       onPressed: () => showIntWeightDialog(),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-//                          SizedBox(
-//                            width: 20.0,
-//                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
                           Text("Weight",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
-//                          SizedBox(
-//                            width: 142.0,
-//                          ),
+                          SizedBox(
+                            width: 142.0,
+                          ),
                           Text(' $currentIntWeightValue Kgs',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 17.5)),
-//                          SizedBox(width: 4.0),
-//                          Icon(
-//                            Icons.arrow_downward,
-//                            color: Colors.white70,
-//                            size: 16.0,
-//                          ),
+                          SizedBox(width: 4.0),
+                          Icon(
+                            Icons.arrow_downward,
+                            color: Colors.white70,
+                            size: 16.0,
+                          ),
                         ],
                       ),
                     ),
@@ -238,8 +245,7 @@ class _HeightAndWeightState extends State<HeightAndWeight> {
                   onTap: () {
                     CalculatorBrain calc = CalculatorBrain(
                         height: currentDoubleHeightValue,
-                        weight: currentIntWeightValue,
-                        age: currentIntAgeValue);
+                        weight: currentIntWeightValue);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

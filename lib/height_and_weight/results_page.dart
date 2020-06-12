@@ -4,7 +4,10 @@ import 'package:hackathoncalorie/purpose/purpose.dart';
 import 'package:hackathoncalorie/tools/constants.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hackathoncalorie/height_and_weight/reusable_card.dart';
+import 'package:hackathoncalorie/dashboard/dashboard.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hackathoncalorie/tools/goals_page_with_loader.dart';
 
 class ResultsPage extends StatefulWidget {
   static String id = 'results_page';
@@ -17,14 +20,11 @@ class ResultsPage extends StatefulWidget {
   final String resultText;
   final String interpretation;
 
-
-
   @override
   _ResultsPageState createState() => _ResultsPageState();
 }
 
 class _ResultsPageState extends State<ResultsPage> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

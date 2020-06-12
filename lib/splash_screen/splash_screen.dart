@@ -83,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlatButton(
-                      onPressed : () {
+                      onPressed: () {
                         controller.animateToPage(3,
                             duration: Duration(milliseconds: 400),
                             curve: Curves.linear);

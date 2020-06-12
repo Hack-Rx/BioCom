@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hackathoncalorie/tools/constants.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hackathoncalorie/height_and_weight/reusable_card.dart';
+import 'package:hackathoncalorie/dashboard/dashboard.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -34,7 +37,6 @@ class _GoalsPageWithLoaderState extends State<GoalsPageWithLoader> {
         PageTransition(type: PageTransitionType.fade, child: Dashboard()));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,11 +49,11 @@ class _GoalsPageWithLoaderState extends State<GoalsPageWithLoader> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFFe3fdfd),
-                    Color(0xFFcbf1f5),
-                    Color(0xFFa6e3e9),
-                    Color(0xFF71c9ce),
-                  ])),
+                Color(0xFFe3fdfd),
+                Color(0xFFcbf1f5),
+                Color(0xFFa6e3e9),
+                Color(0xFF71c9ce),
+              ])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
