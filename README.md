@@ -1,6 +1,6 @@
 # hackathoncalorie
 
-A new Flutter application.
+This is an app for hackRX hackathon.
 
 ## Getting Started
 
