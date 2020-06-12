@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -45,11 +46,11 @@ class HomepageState extends State<LoginPage> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                Color(0xFFe3fdfd),
-                Color(0xFFcbf1f5),
-                Color(0xFFa6e3e9),
-                Color(0xFF71c9ce),
-              ])), //Color(0xFFDFF8FE)),
+                    Color(0xFFe3fdfd),
+                    Color(0xFFcbf1f5),
+                    Color(0xFFa6e3e9),
+                    Color(0xFF71c9ce),
+                  ])), //Color(0xFFDFF8FE)),
           child: Stack(
             children: [
               Container(
@@ -91,248 +92,544 @@ class HomepageState extends State<LoginPage> {
                           // LOGIN
                           islogin
                               ? Positioned(
-                                  top: 15,
-                                  left: 20,
-                                  right: 20,
-                                  child: Container(
-                                    height: 460,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.98,
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          child: ClipPath(
+                              top: 15,
+                              left: 20,
+                              right: 20,
+                              child: Container(
+                                height: 460,
+                                width: MediaQuery.of(context).size.width *
+                                    0.98,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      child: ClipPath(
+                                        clipper: SignupClipper(),
+                                        child: Container(
+                                          height: 500,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.92,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[400]
+                                                  .withOpacity(0.2)),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 30,
+                                                    top: 12,
+                                                    right: 30),
+                                                child: Text(
+                                                  "Sign Up",
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize: 27,
+                                                      color:
+                                                      Colors.grey[400]),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    CustomPaint(
+                                      painter: loginShadowPaint(),
+                                      child: ClipPath(
+                                        clipper: loginClipper(),
+                                        child: Container(
+                                          height: 500,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.92,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xFF30e3ca)),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 30, top: 20),
+                                                child: Text(
+                                                  "Login",
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize: 32,
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Container(
+                                                  width: 75,
+                                                  margin: EdgeInsets.only(
+                                                    left: 30,
+                                                  ),
+                                                  height: 12,
+                                                  child: Card(
+                                                      elevation: 2,
+                                                      color: Colors.white)),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                              Container(
+                                                  width:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                      0.7,
+                                                  margin: EdgeInsets.only(
+                                                    left: 30,
+                                                  ),
+                                                  height: 60,
+                                                  child: TextField(
+                                                    keyboardType:
+                                                    TextInputType
+                                                        .emailAddress,
+                                                    decoration:
+                                                    InputDecoration(
+                                                        icon: Icon(
+                                                          Icons.mail,
+                                                          size: 24,
+                                                          color: Colors
+                                                              .white,
+                                                        ),
+                                                        hintText:
+                                                        "Email",
+                                                        labelStyle: GoogleFonts.lato(
+                                                            fontSize:
+                                                            16,
+                                                            color: Colors
+                                                                .white)),
+                                                  )),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Container(
+                                                  width:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                      0.7,
+                                                  margin: EdgeInsets.only(
+                                                    left: 30,
+                                                  ),
+                                                  height: 60,
+                                                  child: TextField(
+                                                    obscureText: true,
+                                                    decoration:
+                                                    InputDecoration(
+                                                        icon: Icon(
+                                                          Icons.build,
+                                                          size: 20,
+                                                          color: Colors
+                                                              .white,
+                                                        ),
+                                                        hintText:
+                                                        "Password",
+                                                        labelStyle: GoogleFonts.lato(
+                                                            fontSize:
+                                                            16,
+                                                            color: Colors
+                                                                .white)),
+                                                  )),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 28),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Spacer(),
+                                                    Text(
+                                                      "Forgot Password ?",
+                                                      style: GoogleFonts
+                                                          .roboto(
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w600,
+                                                          fontSize: 12,
+                                                          color: Colors
+                                                              .white),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.266,
+                                      bottom: 80,
+                                      child: Align(
+                                        alignment: Alignment(0, 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.circular(
+                                                          25)),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.white,
+                                                        spreadRadius: 1,
+                                                        blurRadius: 0)
+                                                  ]),
+                                              child: MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type:
+                                                        PageTransitionType
+                                                            .fade
+                                                      ));
+                                                },
+                                                elevation: 2,
+                                                child: Text(
+                                                  "Login",
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize: 13.5,
+                                                      color: Color(
+                                                          0xFF4BB8F4)),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ))
+                              : Container(),
+                          // SIGN-UP
+                          islogin == false
+                              ? Positioned(
+                              top: 20,
+                              left: 20,
+                              right: 20,
+                              child: Container(
+                                height: 455,
+                                width: MediaQuery.of(context).size.width *
+                                    0.98,
+//                                  margin: EdgeInsets.only(bottom: 20),
+                                child: Stack(
+                                  children: [
+                                    CustomPaint(
+                                      painter: signupShadowPaint(),
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            child: ClipPath(
+                                              clipper: loginClipper(),
+                                              child: Container(
+                                                height: 500,
+                                                width:
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                    0.92,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey[400]
+                                                        .withOpacity(0.2)),
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      margin:
+                                                      EdgeInsets.only(
+                                                          left: 30,
+                                                          top: 20,
+                                                          right: 30),
+                                                      child: Text(
+                                                        "Login",
+                                                        style: GoogleFonts.roboto(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize: 27,
+                                                            color: Colors
+                                                                .grey[400]),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          ClipPath(
                                             clipper: SignupClipper(),
                                             child: Container(
                                               height: 500,
                                               width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.92,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey[400]
-                                                      .withOpacity(0.2)),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 20,
-                                                  ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 30,
-                                                        top: 12,
-                                                        right: 30),
-                                                    child: Text(
-                                                      "Sign Up",
-                                                      style: GoogleFonts.roboto(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 27,
-                                                          color:
-                                                              Colors.grey[400]),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        CustomPaint(
-                                          painter: loginShadowPaint(),
-                                          child: ClipPath(
-                                            clipper: loginClipper(),
-                                            child: Container(
-                                              height: 500,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
+                                                  .size
+                                                  .width *
                                                   0.92,
                                               decoration: BoxDecoration(
                                                   color: Color(0xFF30e3ca)),
                                               child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                MainAxisAlignment.start,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment
+                                                    .start,
                                                 children: [
                                                   SizedBox(
                                                     height: 20,
                                                   ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 30, top: 20),
-                                                    child: Text(
-                                                      "Login",
-                                                      style: GoogleFonts.roboto(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 32,
-                                                          color: Colors.white),
-                                                    ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Spacer(),
+                                                      Container(
+                                                        margin:
+                                                        EdgeInsets.only(
+                                                            left: 30,
+                                                            top: 20,
+                                                            right: 20),
+                                                        child: Text(
+                                                          "Sign Up",
+                                                          style: GoogleFonts.roboto(
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w600,
+                                                              fontSize: 32,
+                                                              color: Colors
+                                                                  .white),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Container(
-                                                      width: 75,
-                                                      margin: EdgeInsets.only(
-                                                        left: 30,
-                                                      ),
-                                                      height: 12,
-                                                      child: Card(
-                                                          elevation: 2,
-                                                          color: Colors.white)),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Spacer(),
+                                                      Container(
+                                                          width: 85,
+                                                          margin: EdgeInsets
+                                                              .only(
+                                                              left: 30,
+                                                              right:
+                                                              25),
+                                                          height: 12,
+                                                          child: Card(
+                                                              elevation: 2,
+                                                              color: Colors
+                                                                  .white)),
+                                                    ],
+                                                  ),
                                                   SizedBox(
-                                                    height: 30,
+                                                    height: 20,
                                                   ),
                                                   Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.7,
-                                                      margin: EdgeInsets.only(
+                                                      width: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width *
+                                                          0.7,
+                                                      margin:
+                                                      EdgeInsets.only(
+                                                        left: 30,
+                                                      ),
+                                                      height: 60,
+                                                      child: TextField(
+                                                        decoration:
+                                                        InputDecoration(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .perm_identity,
+                                                              size: 24,
+                                                              color: Colors
+                                                                  .white,
+                                                            ),
+                                                            hintText:
+                                                            "Name",
+                                                            labelStyle: GoogleFonts.lato(
+                                                                fontSize:
+                                                                16,
+                                                                color: Colors
+                                                                    .white)),
+                                                      )),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Container(
+                                                      width: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width *
+                                                          0.7,
+                                                      margin:
+                                                      EdgeInsets.only(
                                                         left: 30,
                                                       ),
                                                       height: 60,
                                                       child: TextField(
                                                         keyboardType:
-                                                            TextInputType
-                                                                .emailAddress,
+                                                        TextInputType
+                                                            .emailAddress,
                                                         decoration:
-                                                            InputDecoration(
-                                                                icon: Icon(
-                                                                  Icons.mail,
-                                                                  size: 24,
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                                hintText:
-                                                                    "Email",
-                                                                labelStyle: GoogleFonts.lato(
-                                                                    fontSize:
-                                                                        16,
-                                                                    color: Colors
-                                                                        .white)),
+                                                        InputDecoration(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .mail,
+                                                              size: 20,
+                                                              color: Colors
+                                                                  .white,
+                                                            ),
+                                                            hintText:
+                                                            "Email",
+                                                            labelStyle: GoogleFonts.lato(
+                                                                fontSize:
+                                                                16,
+                                                                color: Colors
+                                                                    .white)),
                                                       )),
                                                   SizedBox(
-                                                    height: 20,
+                                                    height: 10,
                                                   ),
                                                   Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.7,
-                                                      margin: EdgeInsets.only(
+                                                      width: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width *
+                                                          0.7,
+                                                      margin:
+                                                      EdgeInsets.only(
                                                         left: 30,
                                                       ),
                                                       height: 60,
                                                       child: TextField(
                                                         obscureText: true,
                                                         decoration:
-                                                            InputDecoration(
-                                                                icon: Icon(
-                                                                  Icons.build,
-                                                                  size: 20,
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                                hintText:
-                                                                    "Password",
-                                                                labelStyle: GoogleFonts.lato(
-                                                                    fontSize:
-                                                                        16,
-                                                                    color: Colors
-                                                                        .white)),
+                                                        InputDecoration(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .build,
+                                                              size: 20,
+                                                              color: Colors
+                                                                  .white,
+                                                            ),
+                                                            hintText:
+                                                            "Password",
+                                                            labelStyle: GoogleFonts.lato(
+                                                                fontSize:
+                                                                16,
+                                                                color: Colors
+                                                                    .white)),
                                                       )),
-                                                  SizedBox(
-                                                    height: 30,
-                                                  ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 28),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Spacer(),
-                                                        Text(
-                                                          "Forgot Password ?",
-                                                          style: GoogleFonts
-                                                              .roboto(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 12,
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
                                                 ],
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Positioned(
-                                          left: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.266,
-                                          bottom: 80,
-                                          child: Align(
-                                            alignment: Alignment(0, 10),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 120,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  25)),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                            color: Colors.white,
-                                                            spreadRadius: 1,
-                                                            blurRadius: 0)
-                                                      ]),
-                                                  child: MaterialButton(
-                                                    onPressed: () {
-                                                    },
-                                                    elevation: 2,
-                                                    child: Text(
-                                                      "Login",
-                                                      style: GoogleFonts.roboto(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 13.5,
-                                                          color: Color(
-                                                              0xFF4BB8F4)),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ))
-                              : Container()
+                                    Positioned(
+                                      left: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.29,
+                                      bottom: 75,
+                                      child: Align(
+                                        alignment: Alignment(0, 40),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              height: 40.0,
+                                            ),
+                                            Container(
+                                              width: 120,
+                                              height: 45,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.circular(
+                                                          25)),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Color(
+                                                            0xFF4BB8F4),
+                                                        spreadRadius: 0.1,
+                                                        blurRadius: 1)
+                                                  ]),
+                                              child: MaterialButton(
+                                                onPressed: () {},
+                                                elevation: 2,
+                                                child: Text(
+                                                  "Sign Up",
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize: 13.5,
+                                                      color: Color(
+                                                          0xFF4BB8F4)),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ))
+                              : Container(),
                         ],
                       ),
                     )
@@ -368,28 +665,57 @@ class HomepageState extends State<LoginPage> {
               ),
               islogin
                   ? Positioned(
-                      bottom: MediaQuery.of(context).size.height * 0.11,
-                      left: loginLeftValue,
-                      child: GestureDetector(
-                        onTap: () {
-                          if (islogin) {
-                            setState(() {
-                              islogin = true;
-                            });
-                          }
-                        },
-                        child: Text(
-                          islogin
-                              ? " New User? Sign Up"
-                              : "",
-                          style: GoogleFonts.roboto(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    )
-                  : Container()
+                bottom: MediaQuery.of(context).size.height * 0.11,
+                left: loginLeftValue,
+                child: GestureDetector(
+                  onTap: () {
+                    if (islogin) {
+                      setState(() {
+                        islogin = false;
+                      });
+                    } else {
+                      setState(() {
+                        islogin = true;
+                      });
+                    }
+                  },
+                  child: Text(
+                    islogin
+                        ? " New User? Sign Up"
+                        : "Registered User? Login",
+                    style: GoogleFonts.roboto(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              )
+                  : Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.11,
+                left: registeredLeftValue,
+                child: GestureDetector(
+                  onTap: () {
+                    if (islogin) {
+                      setState(() {
+                        islogin = false;
+                      });
+                    } else {
+                      setState(() {
+                        islogin = true;
+                      });
+                    }
+                  },
+                  child: Text(
+                    islogin
+                        ? " New User? Sign Up"
+                        : "Registered User? Login",
+                    style: GoogleFonts.roboto(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
