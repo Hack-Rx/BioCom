@@ -35,6 +35,7 @@ class SliderModel {
 List<SliderModel> getSlides() {
   List<SliderModel> slides = new List<SliderModel>();
   SliderModel sliderModel = new SliderModel();
+
   //1
   sliderModel.setDesc("Don't wish for a healthy body. Work for it.");
   sliderModel.setTitle("Dedication");
