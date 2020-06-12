@@ -6,13 +6,12 @@ This is a prototype application for HackRX hackathon named as 'Dieten - Calorie 
 
 Dependencies and flutter packages used:
 
-```ruby
+```green
 dependencies:
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
   modal_progress_hud: ^0.1.3
-  rflutter_alert: ^1.0.3
   provider: ^3.1.2
   pedometer: ^1.2.0
   simple_animations:
