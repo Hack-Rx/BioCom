@@ -62,6 +62,16 @@ class _SplashScreenState extends State<SplashScreen> {
                 title: mySLides[1].getTitle(),
                 desc: mySLides[1].getDesc(),
               ),
+              SlideTile(
+                imagePath: mySLides[2].getImageAssetPath(),
+                title: mySLides[2].getTitle(),
+                desc: mySLides[2].getDesc(),
+              ),
+              SlideTile(
+                imagePath: mySLides[3].getImageAssetPath(),
+                title: mySLides[3].getTitle(),
+                desc: mySLides[3].getDesc(),
+              ),
             ],
           ),
         ),

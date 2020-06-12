@@ -53,5 +53,22 @@ List<SliderModel> getSlides() {
 
   sliderModel = new SliderModel();
 
+  //3
+  sliderModel.setDesc("We bring to you, DIETEN");
+  sliderModel.setTitle("YOUR PERSONAL TRAINER");
+  sliderModel.setImageAssetPath("assets/images/illustration.png");
+  slides.add(sliderModel);
+
+  sliderModel = new SliderModel();
+
+  //4
+  sliderModel.setDesc(
+      "With Dieten, you can always Plan your goals and work hard to Achieve them.");
+  sliderModel.setTitle("Dieten");
+  sliderModel.setImageAssetPath("assets/images/app-logo.png");
+  slides.add(sliderModel);
+
+  sliderModel = new SliderModel();
+
   return slides;
 }
