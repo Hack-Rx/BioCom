@@ -1,9 +1,12 @@
 import 'dart:math';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:flutter/cupertino.dart';
 
 class CalculatorBrain {
-  CalculatorBrain({this.height, this.weight});
-
+  CalculatorBrain({this.height, this.weight, this.age});
+  final int age;
   final double height;
   final int weight;
   double _bmi;
@@ -45,3 +48,5 @@ class CalculatorBrain {
     }
   }
 }
+
+

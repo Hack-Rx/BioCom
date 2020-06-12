@@ -2,14 +2,24 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackathoncalorie/calorie_tracker/calender_timeline.dart';
+import 'package:hackathoncalorie/calorie_tracker/status_timeline.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
+import 'package:hackathoncalorie/dashboard/line_chart.dart';
 import 'package:flutter/rendering.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_consumed.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_steps.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_burnt.dart';
+import 'package:hackathoncalorie/dashboard/water_level_indicator.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:hackathoncalorie/fit_at_home/fit_at_home.dart';
 import 'package:hackathoncalorie/meal_planner/meal_planner.dart';
 import 'package:hackathoncalorie/my_profile/my_profile.dart';
 import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
+import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -24,7 +34,7 @@ class CalorieTracker extends StatefulWidget {
 class _CalorieTrackerState extends State<CalorieTracker> {
   int _selectedIndex = 1;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -89,7 +99,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
           onTap: () => print(''),
           label: 'Choose from list',
           labelStyle:
-          TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+              TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
           labelBackgroundColor: Colors.green,
         ),
         SpeedDialChild(
@@ -100,7 +110,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
           },
           label: 'Click a picture',
           labelStyle:
-          TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+              TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
           labelBackgroundColor: Color(0xFFffd31d),
         ),
       ],
@@ -137,9 +147,9 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              const Color(0xff23b6e6).withOpacity(0.7),
-                              const Color(0xff02d39a).withOpacity(0.5),
-                            ])),
+                          const Color(0xff23b6e6).withOpacity(0.7),
+                          const Color(0xff02d39a).withOpacity(0.5),
+                        ])),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -471,76 +481,76 @@ class _CalorieTrackerState extends State<CalorieTracker> {
               ]),
               child: SafeArea(
                   child: Padding(
-                    padding:
+                padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-                    child: GNav(
-                        gap: 5,
-                        activeColor: Colors.white,
-                        iconSize: 24,
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                        duration: Duration(milliseconds: 800),
-                        tabBackgroundColor: Colors.grey[800],
-                        tabs: [
-                          GButton(
-                            icon: Icons.home,
-                            text: 'Home',
-                            backgroundColor: Colors.pink,
-                          ),
-                          GButton(
-                            icon: Icons.local_dining,
-                            text: 'Tracking',
-                            backgroundColor: Color(0xFFffd31d),
-                          ),
-                          GButton(
-                            icon: Icons.fitness_center,
-                            text: 'Fitness',
-                            backgroundColor: Colors.blue,
-                          ),
-                          GButton(
-                            icon: Icons.person,
-                            text: 'Profile',
-                            backgroundColor: Colors.green,
-                          ),
-                        ],
-                        selectedIndex: _selectedIndex,
-                        onTabChange: (index) {
-                          setState(() {
-                            _selectedIndex = index;
-                            if (index == 0) {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: Dashboard(),
-                                  ));
-                            }
-                            if (index == 1) {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: CalorieTracker(),
-                                  ));
-                            }
-                            if (index == 2) {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: FitAtHome(),
-                                  ));
-                            }
-                            if (index == 3) {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: MyProfile(),
-                                  ));
-                            }
-                          });
-                        }),
-                  ))),
+                child: GNav(
+                    gap: 5,
+                    activeColor: Colors.white,
+                    iconSize: 24,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    duration: Duration(milliseconds: 800),
+                    tabBackgroundColor: Colors.grey[800],
+                    tabs: [
+                      GButton(
+                        icon: Icons.home,
+                        text: 'Home',
+                        backgroundColor: Colors.pink,
+                      ),
+                      GButton(
+                        icon: Icons.local_dining,
+                        text: 'Tracking',
+                        backgroundColor: Color(0xFFffd31d),
+                      ),
+                      GButton(
+                        icon: Icons.fitness_center,
+                        text: 'Fitness',
+                        backgroundColor: Colors.blue,
+                      ),
+                      GButton(
+                        icon: Icons.person,
+                        text: 'Profile',
+                        backgroundColor: Colors.green,
+                      ),
+                    ],
+                    selectedIndex: _selectedIndex,
+                    onTabChange: (index) {
+                      setState(() {
+                        _selectedIndex = index;
+                        if (index == 0) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: Dashboard(),
+                              ));
+                        }
+                        if (index == 1) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: CalorieTracker(),
+                              ));
+                        }
+                        if (index == 2) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: FitAtHome(),
+                              ));
+                        }
+                        if (index == 3) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: MyProfile(),
+                              ));
+                        }
+                      });
+                    }),
+              ))),
           body: ListView(
             children: <Widget>[
               Column(
@@ -572,12 +582,12 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                     child: Center(
                         child: _image == null
                             ? Text(
-                          'Sample: No image selected',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
+                                'Sample: No image selected',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             : Image.file(_image)),
                   ),
                 ],

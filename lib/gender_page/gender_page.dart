@@ -1,8 +1,18 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathoncalorie/height_and_weight/age_picker.dart';
 import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:hackathoncalorie/purpose/purpose.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackathoncalorie/Database.dart';
+import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
+
+import '../height_and_weight/height_and_weight.dart';
+import '../height_and_weight/height_and_weight.dart';
+
 
 class GenderPage extends StatefulWidget {
   static String id = 'gender_page';
@@ -12,10 +22,26 @@ class GenderPage extends StatefulWidget {
 }
 
 class _GenderPageState extends State<GenderPage> {
+
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
   @override
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.uid);
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -89,12 +115,16 @@ class _GenderPageState extends State<GenderPage> {
                           color: Colors.white,
                         ),
                         onPressed: () {
+                          HeightAndWeight(gender: 'Male');
                           Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.fade,
                                 child: HeightAndWeight(),
                               ));
+
+                          Database(uid: loggedInUser.uid)
+                              .updateUserData3('Male', 0, 0, 0);
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -121,12 +151,14 @@ class _GenderPageState extends State<GenderPage> {
                           color: Colors.white,
                         ),
                         onPressed: () {
+                          HeightAndWeight(gender: 'Female');
                           Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.fade,
                                 child: HeightAndWeight(),
                               ));
+                          Database(uid: loggedInUser.uid);
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),

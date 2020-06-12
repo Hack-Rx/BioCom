@@ -9,17 +9,7 @@ class Database {
   final CollectionReference profileCollection =
       Firestore.instance.collection('Profile-info');
 
-  Future updateUserData(String name) async {
-    return await profileCollection.document(uid).setData({
-      'Name': name,
-    });
-  }
-
-  Future updateUserData2(String gender) async {
-    return await profileCollection.document(uid).setData({
-      'Gender': gender,
-    });
-  }
+ final CollectionReference profileCollection2 = Firestore.instance.collection('Water-log');
 
   Future updateUserData3(
       String gender, double height, int weight, int age) async {
@@ -28,6 +18,12 @@ class Database {
       'Weight': weight,
       'Height': height,
       'age': age,
+    });
+  }
+  Future updateUserData2(
+      int waterlog) async {
+    return await profileCollection2.document(uid).setData({
+      'waterlog' : waterlog
     });
   }
   //profile list from snapshot
@@ -46,7 +42,7 @@ class Database {
         uid: uid,
         height: snapshot.data['Height'],
         weight: snapshot.data['Weight'],
-        Age: snapshot.data['Age']);
+        Age: snapshot.data['age']);
   }
 
   //get method

@@ -1,9 +1,19 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackathoncalorie/calorie_tracker/calender_timeline.dart';
 import 'package:hackathoncalorie/calorie_tracker/calorie_tracker.dart';
+import 'package:hackathoncalorie/calorie_tracker/status_timeline.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
+import 'package:hackathoncalorie/dashboard/line_chart.dart';
 import 'package:flutter/rendering.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_consumed.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_steps.dart';
+import 'package:hackathoncalorie/dashboard/radial_progress_burnt.dart';
+import 'package:hackathoncalorie/dashboard/water_level_indicator.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:hackathoncalorie/fit_at_home/radial_progress_calories_fit_at_home.dart';
 import 'package:hackathoncalorie/fit_at_home/radial_progress_miles_fit_at_home.dart';
 import 'package:hackathoncalorie/fit_at_home/radial_progress_steps_fit_at_home.dart';
@@ -597,7 +607,7 @@ class _FitAtHomeState extends State<FitAtHome> {
                               height: 10.0,
                             ),
                             Text(
-                              'Motivational text',
+                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 15.0),
                             ),

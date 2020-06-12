@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,23 +12,37 @@ import 'package:hackathoncalorie/dashboard/radial_progress_consumed.dart';
 import 'package:hackathoncalorie/dashboard/radial_progress_steps.dart';
 import 'package:hackathoncalorie/dashboard/radial_progress_burnt.dart';
 import 'package:hackathoncalorie/dashboard/water_level_indicator.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:hackathoncalorie/fit_at_home/fit_at_home.dart';
+import 'package:hackathoncalorie/login_screen/login_screen.dart';
 import 'package:hackathoncalorie/meal_planner/meal_planner.dart';
 import 'package:hackathoncalorie/my_profile/my_profile.dart';
 import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
 import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flippo_navigation/flippo_navigation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pedometer/pedometer.dart';
+import 'package:async/async.dart';
+import 'package:hackathoncalorie/Database.dart';
 
 class Dashboard extends StatefulWidget {
   static String id = 'dashboard';
+
+  //ToDo Assign 9 variables to the progress bars after backend is done.
 
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+
+  @override
+
   int waterLevelCurrentStep = 0;
   int _selectedIndex = 0;
+
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -48,10 +64,57 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       style: optionStyle,
     ),
   ];
+  Pedometer _pedometer;
+  StreamSubscription<int> _subscription;
+  String _stepCountValue='?';
   @override
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
+    getCurrentUser();
+    initPlatformState();
+  }
+  Future<void> initPlatformState() async {
+    startListening();
+  }
+
+  void onData(int stepCountValue) {
+    print(stepCountValue);
+  }
+
+  void startListening() {
+    _pedometer = new Pedometer();
+    _subscription = _pedometer.pedometerStream.listen(_onData,
+        onError: _onError, onDone: _onDone, cancelOnError: true);
+  }
+
+  void stopListening() {
+    _subscription.cancel();
+  }
+
+  void _onData(int newValue) async {
+    print('New step count value: $newValue');
+    setState(() => _stepCountValue = "$newValue");
+  }
+
+  void _onDone() => print("Finished pedometer tracking");
+
+  void _onError(error) => print("Flutter Pedometer Error: $error");
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
+  String name = '';
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+        print(loggedInUser.displayName);
+        name = loggedInUser.displayName;
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -135,7 +198,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         width: 18.0,
                       ),
                       Text(
-                        'Welcome back, Name',
+                        'Welcome, $name',
                         style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
                     ],
@@ -536,7 +599,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Water Log',
+                        '$_stepCountValue',
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 21.0,
@@ -582,6 +645,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   waterLevelCurrentStep = 0;
                                 }
                               });
+                              Database(uid: loggedInUser.uid).updateUserData2(waterLevelCurrentStep);
                             },
                             icon: Icon(
                               FontAwesomeIcons.plusCircle,
@@ -694,6 +758,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     child: MaterialButton(
                       splashColor: Colors.white,
                       onPressed: () {
+
                         Navigator.push(
                             context,
                             PageTransition(

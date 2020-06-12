@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "291727392215",
+    "firebase_url": "https://bajaj-hackathon-4a499.firebaseio.com",
+    "project_id": "bajaj-hackathon-4a499",
+    "storage_bucket": "bajaj-hackathon-4a499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291727392215:android:63e8ab0de79ca5c30c9f92",
+        "android_client_info": {
+          "package_name": "com.BioCom.hackathoncalorie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291727392215-mmutdtru21dh6mdur6n6tsjcvsobkvu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCauC0pdwvO3EcJwe0mCZO3nVsmiF8h-Vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291727392215-mmutdtru21dh6mdur6n6tsjcvsobkvu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

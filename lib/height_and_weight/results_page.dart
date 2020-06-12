@@ -1,9 +1,16 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hackathoncalorie/purpose/purpose.dart';
 import 'package:hackathoncalorie/tools/constants.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hackathoncalorie/height_and_weight/reusable_card.dart';
+import 'package:hackathoncalorie/dashboard/dashboard.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hackathoncalorie/tools/goals_page_with_loader.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackathoncalorie/my_profile/my_profile.dart';
 
 class ResultsPage extends StatefulWidget {
   static String id = 'results_page';
@@ -16,11 +23,36 @@ class ResultsPage extends StatefulWidget {
   final String resultText;
   final String interpretation;
 
+
+
   @override
   _ResultsPageState createState() => _ResultsPageState();
 }
 
 class _ResultsPageState extends State<ResultsPage> {
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+        print(loggedInUser.displayName);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+  final _firestore = Firestore.instance;
+
+  void getMessage()async{
+    final messages = await _firestore.collection('Profile-info').getDocuments();
+    for ( var message in messages.documents ){
+      print(message.data);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -106,6 +138,8 @@ class _ResultsPageState extends State<ResultsPage> {
                 padding: EdgeInsets.only(left: 75.0, right: 75.0, bottom: 20.0),
                 child: GestureDetector(
                   onTap: () {
+                    MyProfile(BMI: widget.bmiResult);
+                    getMessage();
                     Navigator.push(
                         context,
                         PageTransition(
