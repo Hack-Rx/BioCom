@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathoncalorie/gender_page/gender_page.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -318,7 +319,8 @@ class HomepageState extends State<LoginPage> {
                                                       PageTransition(
                                                         type:
                                                         PageTransitionType
-                                                            .fade
+                                                            .fade,
+                                                        child: GenderPage(),
                                                       ));
                                                 },
                                                 elevation: 2,
