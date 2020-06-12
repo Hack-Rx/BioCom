@@ -30,6 +30,7 @@ dependencies:
   rflutter_alert: ^1.0.3
   provider: ^3.1.2
   pedometer: ^1.2.0
+  animated_dialog_box: ^0.0.2
   simple_animations:
   google_fonts:
   font_awesome_flutter:

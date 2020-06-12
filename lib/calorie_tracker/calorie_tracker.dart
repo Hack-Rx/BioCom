@@ -23,6 +23,8 @@ import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:animated_dialog_box/animated_dialog_box.dart';
+
 
 class CalorieTracker extends StatefulWidget {
   static String id = 'calorie_tracker';
@@ -56,6 +58,19 @@ class _CalorieTrackerState extends State<CalorieTracker> {
 
   ScrollController scrollController;
   bool dialVisible = true;
+  int count  = 0;
+  int Sabji =0;
+  int Poha = 0;
+  int Dosa = 0;
+  int Rice = 0;
+  int Daal = 0;
+  int Paneer =0;
+  int Chicken = 0;
+  int DRice = 0;
+  int DDaal = 0;
+  int DPaneer =0;
+  int DChicken = 0;
+
 
   @override
   void initState() {
@@ -96,7 +111,252 @@ class _CalorieTrackerState extends State<CalorieTracker> {
         SpeedDialChild(
           child: Icon(Icons.assignment, color: Colors.white),
           backgroundColor: Colors.green,
-          onTap: () => print(''),
+          onTap: () async{
+            print('');
+            await animated_dialog_box.showRotatedAlert(
+                // IF YOU WANT TO ADD
+                context: context,
+                firstButton: MaterialButton(
+                  // FIRST BUTTON IS REQUIRED
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                secondButton: MaterialButton(
+                  // OPTIONAL BUTTON
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  color: Colors.white,
+                  child: Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+
+                icon: Icon(Icons.info_outline,color: Colors.white,),
+                title: Center(child: Text("Chose your meal")),// IF YOU WANT TO ADD ICON
+                yourWidget: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Text('Breakfast'),
+                      SizedBox(height: 10),
+
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Chappati'),
+
+
+
+                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+                            onPressed: (){
+                              setState(() {
+                                count++;
+                                print(count);
+                              });
+                            },
+
+                          ),
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Poha'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+
+                          ),
+                            SizedBox(width: 40),
+
+//                          MaterialButton(
+//                            onPressed: (){
+//                              Dosa ++;
+//                            },
+//                            child: Text('Dosa : $Dosa'),
+//
+//                          ),
+
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          ),
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Dosa'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+                          ),
+//                          MaterialButton(
+//                            onPressed: (){
+//                              Dosa ++;
+//                            },
+//                            child: Text('Dosa : $Dosa'),
+//
+//                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          )
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Poha'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+                          ),
+//                          MaterialButton(
+//                            onPressed: (){
+//                              Dosa ++;
+//                            },
+//                            child: Text('Dosa : $Dosa'),
+//
+//                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(height: 10),
+
+                      Text('Lunch/Dinner'),
+                      SizedBox(height: 10),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Poha'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          )
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Poha'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          )
+
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          MaterialButton(
+                            child: Text('Poha'),
+
+                            onPressed: (){
+                              setState(() {
+                                Poha++;
+                                print(Poha);
+                              });
+                            },
+
+                          ),
+                          SizedBox(width: 40),
+                          Text('$count'),
+                          SizedBox(width: 20),
+
+                          MaterialButton(
+
+                            child: Icon(Icons.add, color: Colors.red),
+
+                          )
+
+                        ],
+                      ),
+
+
+
+                    ],
+                  ),
+                ));
+          },
           label: 'Choose from list',
           labelStyle:
               TextStyle(fontWeight: FontWeight.w500, color: Colors.white),

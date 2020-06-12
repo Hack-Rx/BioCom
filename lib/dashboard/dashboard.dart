@@ -66,7 +66,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   ];
   Pedometer _pedometer;
   StreamSubscription<int> _subscription;
-  String _stepCountValue='?';
+  String _stepCountValue;
   @override
   void initState() {
     super.initState();
@@ -94,7 +94,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   void _onData(int newValue) async {
     print('New step count value: $newValue');
-    setState(() => _stepCountValue = "$newValue");
+    setState(() => _stepCountValue = '$newValue');
   }
 
   void _onDone() => print("Finished pedometer tracking");
