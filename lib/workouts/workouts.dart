@@ -11,7 +11,6 @@ import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
 import 'package:hackathoncalorie/workouts/grid_workouts_tile.dart';
 import 'package:hackathoncalorie/workouts/shoulder_workouts.dart';
 import 'package:hackathoncalorie/workouts/upper_body_workouts.dart';
-import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'lower_body_workouts.dart';

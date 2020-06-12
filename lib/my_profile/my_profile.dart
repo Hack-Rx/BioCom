@@ -1,28 +1,14 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hackathoncalorie/calorie_tracker/calorie_tracker.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
-import 'package:hackathoncalorie/dashboard/line_chart.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hackathoncalorie/dashboard/radial_progress_consumed.dart';
-import 'package:hackathoncalorie/dashboard/radial_progress_steps.dart';
-import 'package:hackathoncalorie/dashboard/radial_progress_burnt.dart';
-import 'package:hackathoncalorie/dashboard/water_level_indicator.dart';
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:hackathoncalorie/fit_at_home/fit_at_home.dart';
-import 'package:hackathoncalorie/login_screen/login_screen.dart';
 import 'package:hackathoncalorie/meal_planner/meal_planner.dart';
-import 'package:hackathoncalorie/my_profile/my_profile.dart';
 import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
-import 'package:hackathoncalorie/tools/calculator_brain.dart';
-import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flippo_navigation/flippo_navigation.dart';
-import 'package:hackathoncalorie/tools/constants.dart';
 
 class MyProfile extends StatefulWidget {
   static String id = 'my_profile';

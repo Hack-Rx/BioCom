@@ -1,10 +1,8 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathoncalorie/height_and_weight/age_picker.dart';
 import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:hackathoncalorie/purpose/purpose.dart';
 
 class GenderPage extends StatefulWidget {
   static String id = 'gender_page';

@@ -1,19 +1,9 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathoncalorie/dashboard/dashboard.dart';
-import 'package:hackathoncalorie/height_and_weight/age_picker.dart';
-import 'package:hackathoncalorie/height_and_weight/height_picker.dart';
-import 'package:hackathoncalorie/height_and_weight/reusable_card.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hackathoncalorie/height_and_weight/weight_picker.dart';
-import 'package:hackathoncalorie/my_profile/my_profile.dart';
-import 'package:hackathoncalorie/tools/constants.dart';
 import 'package:hackathoncalorie/tools/calculator_brain.dart';
 import 'package:hackathoncalorie/height_and_weight/results_page.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:page_transition/page_transition.dart';
-import 'dart:io';
 
 class HeightAndWeight extends StatefulWidget {
   static String id = 'height_and_weight';

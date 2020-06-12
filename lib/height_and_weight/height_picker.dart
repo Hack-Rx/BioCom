@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'height_and_weight.dart';
 
 class HeightPicker extends StatefulWidget {
   @override
