@@ -28,6 +28,7 @@ import 'my_profile/my_profile.dart';
 import 'splash_screen/splash_screen.dart';
 import 'splash_screen/splash_screen.dart';
 import 'workouts/workouts.dart';
+import 'calorie_tracker/meal_from_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         routes: {
           // Named Routes
           SplashScreen.id: (context) => SplashScreen(),
+          MealFromList.id: (context) => MealFromList(),
           LoginScreen.id: (context) => LoginScreen(),
           GenderPage.id: (context) => GenderPage(),
           HeightAndWeight.id: (context) => HeightAndWeight(),

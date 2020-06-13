@@ -26,6 +26,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MealPlanner extends StatefulWidget {
   static String id = 'meal_planner';
@@ -73,6 +74,14 @@ class _MealPlannerState extends State<MealPlanner> {
       style: optionStyle,
     ),
   ];
+  List data ;
+  void getMessage()async{
+    final messages = await Firestore.instance.collection('reference').getDocuments();
+    for ( var message in messages.documents ){
+      print(message.data);
+      data = messages.documents;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -209,6 +218,7 @@ class _MealPlannerState extends State<MealPlanner> {
                           ));
                     },
                   ),
+
                   ListTile(
                     leading: Text(
                       "Profile",
@@ -428,6 +438,7 @@ class _MealPlannerState extends State<MealPlanner> {
                 BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
               ]),
               child: SafeArea(
+
                   child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -499,155 +510,34 @@ class _MealPlannerState extends State<MealPlanner> {
                       });
                     }),
               ))),
-          body: ListView(
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
-                    child: Container(
-                      height: 2.5,
-                      width: 250.0,
-                      decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.all(Radius.circular(4.0))),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                StreamBuilder<QuerySnapshot>(
+                  stream: Firestore.instance.collection('reference').snapshots(),
+                  builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      final messages = snapshot.data.documents;
+                      List<Text> messageWidgets = [];
+                      for (var message in messages){
+                        final messageCalorie = message.data['Calories'];
+                        final messageQuantity = message.data['Quantity'];
+                        final messageItem = message.data['Item'];
 
-//                SearchDropdown(
-//                  heading: 'Breakfast',
-//                  titleText: 'Bread and Butter',
-//                )
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Card(
-                      elevation: 6.0,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: 420.0,
-                        height: 60.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Breafast',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            Icon(Icons.add),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Card(
-                      elevation: 6.0,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: 420.0,
-                        height: 60.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Morning Snack',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            Icon(Icons.add),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Card(
-                      elevation: 6.0,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: 420.0,
-                        height: 60.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Lunch',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            Icon(Icons.add),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Card(
-                      elevation: 6.0,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: 420.0,
-                        height: 60.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Evening Snack',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            Icon(Icons.add),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Card(
-                      elevation: 6.0,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: 420.0,
-                        height: 60.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Dinner',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            Icon(Icons.add),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                ],
-              ),
-            ],
-          ),
+                        final messageWidget =
+                            Text('$messageItem $messageQuantity $messageCalorie');
+                        messageWidgets.add(messageWidget);
+                      }
+                      return Column(
+
+                      children: messageWidgets,
+                      );
+                    };
+                  },
+                )
+              ],
+            ),
+          )
         ),
       ),
     );
