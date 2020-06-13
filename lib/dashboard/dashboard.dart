@@ -66,7 +66,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   ];
   Pedometer _pedometer;
   StreamSubscription<int> _subscription;
-  String _stepCountValue;
+  String stepCountValue = '0';
+
   @override
   void initState() {
     super.initState();
@@ -94,7 +95,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   void _onData(int newValue) async {
     print('New step count value: $newValue');
-    setState(() => _stepCountValue = '$newValue');
+    setState(() => stepCountValue = '$newValue');
   }
 
   void _onDone() => print("Finished pedometer tracking");
@@ -103,6 +104,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   final _auth = FirebaseAuth.instance;
   FirebaseUser loggedInUser;
   String name = '';
+
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -543,6 +545,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       RadialProgressSteps(
                         achievedSteps: 2000,
                         totalSteps: 6000,
+
+                        displayAchievedSteps: stepCountValue,
+                        displayTotalSteps: '6000',
                       ),
                       RadialProgressConsumed(
                         consumedCalories: 1500,
@@ -599,7 +604,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        '$_stepCountValue',
+                        'Water Log',
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 21.0,

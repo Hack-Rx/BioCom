@@ -4,10 +4,16 @@ import 'package:vector_math/vector_math_64.dart' as math;
 class RadialProgressSteps extends StatefulWidget {
   double achievedSteps;
   double totalSteps;
-  RadialProgressSteps({
-    @required this.totalSteps,
-    @required this.achievedSteps,
-  });
+
+  String displayAchievedSteps;
+  String displayTotalSteps;
+
+  RadialProgressSteps(
+      {@required this.totalSteps,
+        @required this.achievedSteps,
+        this.displayAchievedSteps,
+        this.displayTotalSteps});
+
 
   @override
   _RadialProgressStepsState createState() => _RadialProgressStepsState();
@@ -62,7 +68,7 @@ class _RadialProgressStepsState extends State<RadialProgressSteps>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    widget.achievedSteps.toInt().toString(),
+                    widget.displayAchievedSteps,
                     style:
                         TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold),
                   ),
@@ -78,7 +84,7 @@ class _RadialProgressStepsState extends State<RadialProgressSteps>
                     width: 5.0,
                   ),
                   Text(
-                    widget.totalSteps.toInt().toString(),
+                    widget.displayTotalSteps,
                     style:
                         TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold),
                   ),

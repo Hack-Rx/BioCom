@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,6 +25,7 @@ import 'package:hackathoncalorie/splash_screen/splash_screen.dart';
 import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:pedometer/pedometer.dart';
 
 class FitAtHome extends StatefulWidget {
   static String id = 'fit_at_home';
@@ -63,6 +66,7 @@ class _FitAtHomeState extends State<FitAtHome> {
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
+    initPlatformState();
   }
 
   @override
@@ -75,6 +79,40 @@ class _FitAtHomeState extends State<FitAtHome> {
     Navigator.pop(context); // Do some stuff.
     return true;
   }
+
+  Pedometer _pedometer;
+  StreamSubscription<int> _subscription;
+  String stepCountValue = '0';
+
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    startListening();
+  }
+
+  void onData(int stepCountValue) {
+    print(stepCountValue);
+  }
+
+  void startListening() {
+    _pedometer = new Pedometer();
+    _subscription = _pedometer.pedometerStream.listen(_onData,
+        onError: _onError, onDone: _onDone, cancelOnError: true);
+  }
+
+  void stopListening() {
+    _subscription.cancel();
+  }
+
+  void _onData(int newValue) async {
+    print('New step count value: $newValue');
+    setState(() => stepCountValue = "$newValue");
+  }
+
+  void _onDone() => print("Finished pedometer tracking");
+
+  void _onError(error) => print("Flutter Pedometer Error: $error");
+
 
   @override
   Widget build(BuildContext context) {
@@ -526,7 +564,10 @@ class _FitAtHomeState extends State<FitAtHome> {
                     children: <Widget>[
                       RadialProgressStepsFitAtHome(
                         totalSteps: 6000,
-                        achievedSteps: 4000,
+                        achievedSteps: 100,
+
+                        displayTotalSteps: '6000',
+                        displayAchievedSteps: stepCountValue,
                       ),
                     ],
                   ),
